@@ -20,11 +20,87 @@ export function rulesFor(language) {
       createRule('CPP-RAND', 'LOW', 'Predictable random generator', /\brand\s*\(/i, 'Use cryptographically secure randomness where security matters.', { cwe: 'CWE-338', cvss: 4.3 })
     ],
     python: [
-      createRule('PY-YAML', 'HIGH', 'Unsafe YAML deserialization', /yaml\.load\s*\((?![^\n]*Loader\s*=\s*yaml\.SafeLoader)/i, 'Use yaml.safe_load().', { cwe: 'CWE-502', owasp: 'A08', cvss: 8.1 }),
-      createRule('PY-PICKLE', 'HIGH', 'Insecure deserialization', /\bpickle\.loads?\s*\(|\bmarshal\.loads?\s*\(/i, 'Do not deserialize untrusted data with pickle or marshal.', { cwe: 'CWE-502', cvss: 8.1 }),
-      createRule('PY-SHELL', 'CRITICAL', 'Shell command injection', /subprocess\.(run|Popen|call)\s*\([^\n]*shell\s*=\s*True/i, 'Avoid shell=True and pass command arguments as a list.', { cwe: 'CWE-78', owasp: 'A03', cvss: 9.8 }),
-      createRule('PY-DEBUG', 'LOW', 'Debug mode enabled', /debug\s*=\s*True/i, 'Disable debug mode in production.', { cwe: 'CWE-489', cvss: 3.1 })
-    ],
+  createRule(
+    'PY-YAML',
+    'HIGH',
+    'Unsafe YAML deserialization',
+    /yaml\.load\s*\((?![^\n]*Loader\s*=\s*yaml\.SafeLoader)/i,
+    'Use yaml.safe_load().',
+    { cwe: 'CWE-502', owasp: 'A08', cvss: 8.1 }
+  ),
+
+  createRule(
+    'PY-PICKLE',
+    'HIGH',
+    'Insecure deserialization',
+    /\bpickle\.loads?\s*\(|\bmarshal\.loads?\s*\(/i,
+    'Do not deserialize untrusted data with pickle or marshal.',
+    { cwe: 'CWE-502', owasp: 'A08', cvss: 8.1 }
+  ),
+
+  createRule(
+    'PY-SHELVE',
+    'MEDIUM',
+    'Potential insecure shelve usage',
+    /\bshelve\.open\s*\(/i,
+    'Avoid opening untrusted shelve databases. Shelve uses pickle internally.',
+    { cwe: 'CWE-502', owasp: 'A08', cvss: 6.5 }
+  ),
+
+  createRule(
+    'PY-EVAL',
+    'CRITICAL',
+    'Dangerous eval usage',
+    /\beval\s*\(/i,
+    'Avoid eval(). Use safe parsers or explicit mappings.',
+    { cwe: 'CWE-95', owasp: 'A03', cvss: 9.8 }
+  ),
+
+  createRule(
+    'PY-EXEC',
+    'CRITICAL',
+    'Dangerous exec usage',
+    /\bexec\s*\(/i,
+    'Avoid exec() with dynamic input.',
+    { cwe: 'CWE-94', owasp: 'A03', cvss: 9.8 }
+  ),
+
+  createRule(
+    'PY-SHELL',
+    'CRITICAL',
+    'Shell command injection',
+    /subprocess\.(run|Popen|call)\s*\([^\n]*shell\s*=\s*True/i,
+    'Avoid shell=True and pass command arguments as a list.',
+    { cwe: 'CWE-78', owasp: 'A03', cvss: 9.8 }
+  ),
+
+  createRule(
+    'PY-REQUESTS-VERIFY',
+    'MEDIUM',
+    'TLS verification disabled',
+    /requests\.(get|post|put|delete)\s*\([^\n]*verify\s*=\s*False/i,
+    'Enable TLS certificate verification.',
+    { cwe: 'CWE-295', owasp: 'A02', cvss: 7.4 }
+  ),
+
+  createRule(
+    'PY-RANDOM',
+    'LOW',
+    'Predictable random generator',
+    /\brandom\.(randint|choice|random)\s*\(/i,
+    'Use secrets module for security-sensitive randomness.',
+    { cwe: 'CWE-338', cvss: 4.3 }
+  ),
+
+  createRule(
+    'PY-DEBUG',
+    'LOW',
+    'Debug mode enabled',
+    /debug\s*=\s*True/i,
+    'Disable debug mode in production.',
+    { cwe: 'CWE-489', cvss: 3.1 }
+  )
+],
     javascript: [
       createRule('JS-LOCALSTORAGE', 'MEDIUM', 'Sensitive data in localStorage', /localStorage\.setItem\s*\([^\n]*(token|secret|password|jwt)/i, 'Avoid storing sensitive tokens in localStorage.', { cwe: 'CWE-922', cvss: 6.5 }),
       createRule('JS-NOSQL', 'HIGH', 'NoSQL injection pattern', /\$where|\$ne|\$gt|\$regex|findOne\s*\(\s*req\./i, 'Validate input and avoid passing request bodies directly into queries.', { cwe: 'CWE-943', owasp: 'A03', cvss: 8.1 })
