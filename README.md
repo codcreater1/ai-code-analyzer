@@ -20,7 +20,7 @@ A premium multi-language static application security testing interface built wit
 ```bash
 npm install
 npm run dev
-```
+```.
 
 Open the local URL printed by Vite.
 
