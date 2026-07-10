@@ -1,78 +1,133 @@
-# AI Code Guard — React Pro SAST
+# AI Code Analyzer
 
-[![CI](https://github.com/codcreater1/ai-code-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/codcreater1/ai-code-analyzer/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
+> A lightweight static code analyzer that detects common code quality, security, and maintainability issues across multiple programming languages.
 
-A premium multi-language static application security testing interface built with React, Tailwind CSS, and Framer Motion.
+![License](https://img.shields.io/github/license/codcreater1/ai-code-analyzer)
+![CI](https://github.com/codcreater1/ai-code-analyzer/actions/workflows/ci.yml/badge.svg)
+![Last Commit](https://img.shields.io/github/last-commit/codcreater1/ai-code-analyzer)
 
-## Table of contents
-
-- [Features](#features)
-- [Run locally](#run-locally)
-- [Testing & linting](#testing--linting)
-- [Recommended workflow](#recommended-workflow)
-- [Design system rules](#design-system-rules)
-- [Contributing](#contributing)
-- [License](#license)
+---
 
 ## Features
 
-- Modern dark and light mode UI
-- Glassmorphism cards, gradients, responsive layout, smooth micro-interactions
-- Multi-language local SAST rules
-- C/C++, Python, JavaScript, TypeScript, Java, C#, Go, Rust, PHP, Solidity support
-- CWE, OWASP and CVSS metadata
-- Groq AI assisted analysis and full-code fix suggestions
-- Drag and drop file upload
-- Public GitHub repository scan
-- Search and severity filters
-- JSON and Markdown export
+- Static code analysis
+- Multi-language support
+- Detects common security issues
+- Code quality recommendations
+- Maintainability analysis
+- Extensible rule system
+- Unit tested
+- Automated GitHub Actions CI
 
-## Run locally
+---
+
+## Supported Languages
+
+- JavaScript
+- Python
+- Java
+- C++
+- C#
+- TypeScript
+
+---
+
+## Project Structure
+
+```
+src/
+ ├── utils/
+ │   ├── analyzer.js
+ │   ├── analyzer.test.js
+ │   ├── language.js
+ │   └── language.test.js
+ ├── components/
+ └── ...
+```
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/codcreater1/ai-code-analyzer.git
+cd ai-code-analyzer
+```
+
+Install dependencies:
 
 ```bash
 npm install
+```
+
+Run the project:
+
+```bash
 npm run dev
 ```
 
-Open the local URL printed by Vite.
+---
 
-## Testing & linting
+## Running Tests
 
 ```bash
-npm test        # run the Vitest suite
-npm run lint     # run ESLint
-npm run build    # production build
+npm test
 ```
 
-All three run automatically in CI on every push and pull request to `main`.
+Run ESLint:
 
-## Recommended workflow
+```bash
+npm run lint
+```
 
-1. Paste or upload a source file.
-2. Keep language on Auto Detect unless you want to force a language.
-3. Click Analyze.
-4. Fix Critical and High issues first.
-5. Add a Groq API key for deeper AI explanations and full-code remediation.
-6. Export JSON or Markdown reports for documentation.
+---
 
-## Design system rules
+## Continuous Integration
 
-- Keep all new components in `src/components`.
-- Keep analysis logic in `src/utils` and API logic in `src/services`.
-- Use `glass-panel`, `primary-button`, `secondary-button`, `input-shell`, `metric-card`, and `chip` classes for visual consistency.
-- Keep spacing generous: prefer `p-5`, `p-6`, `gap-4`, `gap-6`, rounded `2xl/3xl` components.
-- Use English names for variables, functions, components and comments.
+This project uses **GitHub Actions** to automatically:
 
-## Contributing
+- Install dependencies
+- Run ESLint
+- Execute unit tests
+- Validate every push to the `main` branch
 
-Issues and pull requests are welcome. Before opening a PR:
+Every successful workflow confirms that the project passes automated quality checks.
 
-1. Run `npm run lint` and `npm test` locally and make sure both pass.
-2. Keep new SAST rules and utilities covered by tests in `src/utils/*.test.js`.
-3. Follow the design system rules above for any UI changes.
+---
+
+## Technologies
+
+- JavaScript (ES6+)
+- Node.js
+- Vite
+- ESLint
+- Jest / Vitest
+- GitHub Actions
+
+---
+
+## Future Improvements
+
+- AI-powered code suggestions
+- Severity scoring
+- More language support
+- Export analysis reports
+- IDE integration
+- Docker support
+
+---
 
 ## License
 
-Released under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+**Murat Can Nergiz**
+
+GitHub:
+https://github.com/codcreater1
