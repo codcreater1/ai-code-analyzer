@@ -4,7 +4,7 @@ function createRule(id, severity, type, pattern, recommendation, meta = {}) {
 
 export function rulesFor(language) {
   const common = [
-    createRule('SECRET-001', 'HIGH', 'Hardcoded secret', /(api[_-]?key|secret|password|passwd|pwd|token|private[_-]?key)\s*[:=\[\]]*\s*["'][^"']{6,}["']/i, 'Move secrets to environment variables or a secret manager.', { cwe: 'CWE-798', owasp: 'A07', cvss: 7.5 }),
+    createRule('SECRET-001', 'HIGH', 'Hardcoded secret', /(api[_-]?key|secret|password|passwd|pwd|token|private[_-]?key)\s*[:=[\]]*\s*["'][^"']{6,}["']/i, 'Move secrets to environment variables or a secret manager.', { cwe: 'CWE-798', owasp: 'A07', cvss: 7.5 }),
     createRule('INJECT-001', 'CRITICAL', 'Code or command injection risk', /(\beval\s*\(|\bexec\s*\(|\bsystem\s*\(|child_process|Runtime\.getRuntime\(\)\.exec|ProcessBuilder\s*\()/i, 'Avoid dynamic execution. Use safe APIs and strict allowlists.', { cwe: 'CWE-78 / CWE-94', owasp: 'A03', cvss: 9.8 }),
     createRule('SQL-001', 'HIGH', 'Possible SQL injection', /(SELECT|INSERT|UPDATE|DELETE|DROP)\s+[^\n]*(\+|\$\{|format\(|%s|\.concat\()/i, 'Use prepared statements and parameterized queries.', { cwe: 'CWE-89', owasp: 'A03', cvss: 8.8 }),
     createRule('XSS-001', 'MEDIUM', 'Possible XSS sink', /(innerHTML\s*=|outerHTML\s*=|document\.write\s*\(|dangerouslySetInnerHTML)/i, 'Use textContent or sanitize HTML with a trusted sanitizer.', { cwe: 'CWE-79', owasp: 'A03', cvss: 6.1 }),

@@ -3,7 +3,11 @@ const MODEL = 'llama-3.3-70b-versatile';
 
 function extractJson(text) {
   const clean = String(text).replace(/```json|```/g, '').trim();
-  try { return JSON.parse(clean); } catch (_) {}
+  try {
+    return JSON.parse(clean);
+  } catch {
+    // Fall through to brace-extraction below if the response wasn't pure JSON.
+  }
   const start = clean.indexOf('{');
   const end = clean.lastIndexOf('}');
   if (start >= 0 && end > start) return JSON.parse(clean.slice(start, end + 1));

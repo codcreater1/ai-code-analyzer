@@ -1,6 +1,20 @@
 # AI Code Guard — React Pro SAST
 
+[![CI](https://github.com/codcreater1/ai-code-analyzer/actions/workflows/ci.yml/badge.svg)](https://github.com/codcreater1/ai-code-analyzer/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)](https://react.dev)
+
 A premium multi-language static application security testing interface built with React, Tailwind CSS, and Framer Motion.
+
+## Table of contents
+
+- [Features](#features)
+- [Run locally](#run-locally)
+- [Testing & linting](#testing--linting)
+- [Recommended workflow](#recommended-workflow)
+- [Design system rules](#design-system-rules)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Features
 
@@ -20,9 +34,19 @@ A premium multi-language static application security testing interface built wit
 ```bash
 npm install
 npm run dev
-```.
+```
 
 Open the local URL printed by Vite.
+
+## Testing & linting
+
+```bash
+npm test        # run the Vitest suite
+npm run lint     # run ESLint
+npm run build    # production build
+```
+
+All three run automatically in CI on every push and pull request to `main`.
 
 ## Recommended workflow
 
@@ -40,3 +64,15 @@ Open the local URL printed by Vite.
 - Use `glass-panel`, `primary-button`, `secondary-button`, `input-shell`, `metric-card`, and `chip` classes for visual consistency.
 - Keep spacing generous: prefer `p-5`, `p-6`, `gap-4`, `gap-6`, rounded `2xl/3xl` components.
 - Use English names for variables, functions, components and comments.
+
+## Contributing
+
+Issues and pull requests are welcome. Before opening a PR:
+
+1. Run `npm run lint` and `npm test` locally and make sure both pass.
+2. Keep new SAST rules and utilities covered by tests in `src/utils/*.test.js`.
+3. Follow the design system rules above for any UI changes.
+
+## License
+
+Released under the [MIT License](LICENSE).
