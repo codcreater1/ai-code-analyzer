@@ -1,7 +1,7 @@
 const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const MODEL = 'llama-3.3-70b-versatile';
 
-function extractJson(text) {
+export function extractJson(text) {
   const clean = String(text).replace(/```json|```/g, '').trim();
   try {
     return JSON.parse(clean);
