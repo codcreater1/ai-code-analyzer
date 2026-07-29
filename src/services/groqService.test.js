@@ -51,4 +51,22 @@ describe('extractJson', () => {
   it('throws when only a closing brace exists with no matching opener', () => {
     expect(() => extractJson('no json here }')).toThrow('AI response was not valid JSON.');
   });
+
+  it('recovers from literal unescaped newlines inside string values (Llama quirk)', () => {
+    // Llama sometimes emits a raw \n inside a JSON string instead of the escaped \\n,
+    // which JSON.parse rejects as a "Bad control character" error. extractJson now
+    // sanitizes those before the final parse attempt.
+    const raw = '{"summary":"line1\nline2"}';
+    expect(extractJson(raw)).toEqual({ summary: 'line1\nline2' });
+  });
+
+  it('does not touch newlines that already sit outside string values', () => {
+    const raw = 'Sure, here you go:\n{"summary":"ok",\n"findings":[]}\nDone.';
+    expect(extractJson(raw)).toEqual({ summary: 'ok', findings: [] });
+  });
+
+  it('correctly escapes an already-escaped backslash before a quote inside a string', () => {
+    const raw = '{"summary":"path is C:\\\\","note":"line1\nline2"}';
+    expect(extractJson(raw)).toEqual({ summary: 'path is C:\\', note: 'line1\nline2' });
+  });
 });
